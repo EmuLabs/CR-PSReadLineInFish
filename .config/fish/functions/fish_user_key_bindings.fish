@@ -56,6 +56,28 @@ function __psrl_copy_selection
     end
 end
 
+function __psrl_backspace_or_kill_selection
+    set -l selected (commandline --current-selection | string collect)
+    if test -n "$selected"
+        commandline -f kill-selection
+        commandline -f end-selection
+        return
+    end
+
+    commandline -f backward-delete-char
+end
+
+function __psrl_delete_or_kill_selection
+    set -l selected (commandline --current-selection | string collect)
+    if test -n "$selected"
+        commandline -f kill-selection
+        commandline -f end-selection
+        return
+    end
+
+    commandline -f delete-char
+end
+
 function fish_user_key_bindings
     # Keep fish defaults first, then layer overrides.
     fish_default_key_bindings
@@ -88,4 +110,13 @@ function fish_user_key_bindings
 
     # Copy current command-line selection without replacing Ctrl+C interrupt.
     bind alt-w __psrl_copy_selection
+
+    # Remove highlighted text with Backspace/Delete like PSReadLine.
+    bind backspace __psrl_backspace_or_kill_selection
+    bind \x7f __psrl_backspace_or_kill_selection
+    bind delete __psrl_delete_or_kill_selection
+    bind \e\[3\~ __psrl_delete_or_kill_selection
+
+    # Keep default printable typing behavior.
+    bind '' self-insert
 end
