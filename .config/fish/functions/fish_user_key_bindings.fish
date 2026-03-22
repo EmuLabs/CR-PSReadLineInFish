@@ -129,8 +129,10 @@ function fish_user_key_bindings
     bind \e\[2D __psrl_select_backward_char
     bind \e\[2C __psrl_select_forward_char
 
-    # Copy current command-line selection without replacing Ctrl+C interrupt.
-    bind alt-w __psrl_copy_selection
+    # Copy command-line selection (PSReadLine-style). If this never fires, your
+    # terminal may be capturing Ctrl+Shift+C — disable that shortcut or bind the
+    # sequence from `fish_key_reader` instead of ctrl-shift-c.
+    bind ctrl-shift-c __psrl_copy_selection
 
     # Remove highlighted text with Backspace/Delete like PSReadLine.
     bind backspace __psrl_backspace_or_kill_selection

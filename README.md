@@ -14,11 +14,16 @@ It adds:
 - `Ctrl+Left` / `Ctrl+Right` -> move by word (`backward-word` / `forward-word`)
 - `Ctrl+Shift+Left` / `Ctrl+Shift+Right` -> extend selection by word
 - `Ctrl+Shift+Home` / `Ctrl+Shift+End` -> extend selection from the cursor to the **start** / **end** of the line
+- `Ctrl+Shift+C` -> copy the current command-line selection to the clipboard
 
 Several escape-sequence variants are included to improve compatibility across
 terminal emulators and keyboard protocols. If **Ctrl+Shift+Home/End** do nothing,
 run `fish_key_reader` and bind your terminal’s sequences to
 `__psrl_select_to_beginning_of_line` / `__psrl_select_to_end_of_line`.
+
+If **Ctrl+Shift+C** does not copy, the terminal may be using that shortcut for
+its own “copy” action. Turn that off in the terminal profile or bind the
+sequence `fish_key_reader` shows to `__psrl_copy_selection`.
 
 ### Konsole split panes (optional)
 
