@@ -13,9 +13,18 @@ It adds:
 
 - `Ctrl+Left` / `Ctrl+Right` -> move by word (`backward-word` / `forward-word`)
 - `Ctrl+Shift+Left` / `Ctrl+Shift+Right` -> extend selection by word
+- `Ctrl+Shift+Home` / `Ctrl+Shift+End` -> extend selection from the cursor to the **start** / **end** of the line
 
 Several escape-sequence variants are included to improve compatibility across
-terminal emulators and keyboard protocols.
+terminal emulators and keyboard protocols. If **Ctrl+Shift+Home/End** do nothing,
+run `fish_key_reader` and bind your terminal’s sequences to
+`__psrl_select_to_beginning_of_line` / `__psrl_select_to_end_of_line`.
+
+### Konsole split panes (optional)
+
+Patches for **new split pane on the left / above** in Konsole are **not** part
+of this Fish repo; see **[docs/konsole-emulator-features.md](docs/konsole-emulator-features.md)**
+for shortcuts and a pointer to the KonsoleEMU build notes.
 
 ## Install
 
@@ -41,13 +50,13 @@ If a shortcut does not work, check what your terminal actually sends:
 fish_key_reader
 ```
 
-Press the key chord (`Ctrl+Shift+Right`, `Ctrl+Shift+Left`, etc.) and note the
+Press the key chord (`Ctrl+Shift+Right`, `Ctrl+Shift+Home`, etc.) and note the
 sequence shown by `fish_key_reader`.
 
 Add a corresponding bind in `fish_user_key_bindings.fish`, for example:
 
 ```fish
-bind <sequence-from-fish_key_reader> begin-selection forward-word
+bind <sequence-from-fish_key_reader> __psrl_select_forward_word
 ```
 
 or:

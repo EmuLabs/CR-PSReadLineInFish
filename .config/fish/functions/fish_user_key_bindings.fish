@@ -30,6 +30,22 @@ function __psrl_select_forward_char
     commandline -f forward-char
 end
 
+function __psrl_select_to_beginning_of_line
+    set -l selected (commandline --current-selection | string collect)
+    if test -z "$selected"
+        commandline -f begin-selection
+    end
+    commandline -f beginning-of-line
+end
+
+function __psrl_select_to_end_of_line
+    set -l selected (commandline --current-selection | string collect)
+    if test -z "$selected"
+        commandline -f begin-selection
+    end
+    commandline -f end-of-line
+end
+
 function __psrl_copy_selection
     set -l selected (commandline --current-selection | string collect)
     if test -z "$selected"
@@ -101,6 +117,11 @@ function fish_user_key_bindings
     bind \e\[1\;6C __psrl_select_forward_word
     bind \e\[6D __psrl_select_backward_word
     bind \e\[6C __psrl_select_forward_word
+
+    # Select from cursor to start/end of line (PSReadLine-like Ctrl+Shift+Home/End).
+    # Common xterm-style: CSI 1;6 (Ctrl+Shift). Use fish_key_reader if yours differs.
+    bind \e\[1\;6H __psrl_select_to_beginning_of_line
+    bind \e\[1\;6F __psrl_select_to_end_of_line
 
     # Char-wise shift selection for terminals that emit these sequences.
     bind \e\[1\;2D __psrl_select_backward_char
