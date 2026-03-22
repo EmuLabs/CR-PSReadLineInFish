@@ -17,8 +17,9 @@ So:
   the terminal sends a **different** sequence (some GUI terminals can be
   configured to do that).
 
-**Practical default in this repo:** copy selection with **Alt+W** (`bind alt-w
-__psrl_copy_selection`).
+**Default in this repo:** copy selection with **Ctrl+Shift+S** (`bind
+ctrl-shift-s __psrl_copy_selection`). If your terminal does not send a distinct
+sequence for that chord, use `fish_key_reader` and bind manually.
 
 To use another shortcut, run `fish_key_reader`, press your chord, and add:
 

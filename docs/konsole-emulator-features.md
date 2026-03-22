@@ -34,7 +34,7 @@ the distro package remains in `/usr/bin`.
 
 The same fork may also include (depending on branch):
 
-- Select Mode: word-wise movement, Alt+arrow / Ctrl+Shift+copy behavior, etc.
+- Select Mode: word-wise movement, copy shortcut behavior, etc.
 - See that repository’s history and `README.md` for the authoritative list.
 
 This file is a **companion** to the Fish config in this repo; it does not ship
