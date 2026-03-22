@@ -14,16 +14,24 @@ It adds:
 - `Ctrl+Left` / `Ctrl+Right` -> move by word (`backward-word` / `forward-word`)
 - `Ctrl+Shift+Left` / `Ctrl+Shift+Right` -> extend selection by word
 - `Ctrl+Shift+Home` / `Ctrl+Shift+End` -> extend selection from the cursor to the **start** / **end** of the line
-- `Ctrl+Shift+C` -> copy the current command-line selection to the clipboard
+- `Alt+W` -> copy the current command-line selection to the clipboard
 
 Several escape-sequence variants are included to improve compatibility across
 terminal emulators and keyboard protocols. If **Ctrl+Shift+Home/End** do nothing,
 run `fish_key_reader` and bind your terminal’s sequences to
 `__psrl_select_to_beginning_of_line` / `__psrl_select_to_end_of_line`.
 
-If **Ctrl+Shift+C** does not copy, the terminal may be using that shortcut for
-its own “copy” action. Turn that off in the terminal profile or bind the
-sequence `fish_key_reader` shows to `__psrl_copy_selection`.
+### Why not Ctrl+Shift+C?
+
+On Linux TTYs, **Ctrl+Shift+C** often produces the **same** character as
+**Ctrl+C** (ASCII `ETX`, `0x03`, shown as `^C` by `showkey -a`). Fish then sees
+only **interrupt**, not a distinct “copy” chord — so you cannot bind
+`Ctrl+Shift+C` for copy the way Windows Terminal does.
+
+**Use `Alt+W`** for copy here, or configure your terminal to send a **unique**
+escape sequence for a “copy line” shortcut and bind that sequence in
+`fish_user_key_bindings.fish` to `__psrl_copy_selection` (check with
+`fish_key_reader`). More detail: [docs/fish-copy-ctrl-shift-c.md](docs/fish-copy-ctrl-shift-c.md).
 
 ### Konsole split panes (optional)
 
