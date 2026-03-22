@@ -129,9 +129,10 @@ function fish_user_key_bindings
     bind \e\[2D __psrl_select_backward_char
     bind \e\[2C __psrl_select_forward_char
 
-    # Copy command-line selection (Ctrl+Shift+S). Ctrl+Shift+C is not used: on
-    # many Linux TTYs it is the same byte as Ctrl+C (0x03) — see docs/fish-copy-ctrl-shift-c.md
-    bind ctrl-shift-s __psrl_copy_selection
+    # Copy command-line selection. Ctrl+Shift+C/S etc. often collapse to the
+    # same control bytes as Ctrl+C/S on the TTY — use Alt+W or bind a custom
+    # sequence from `fish_key_reader` — see docs/fish-copy-tty-limitations.md
+    bind alt-w __psrl_copy_selection
 
     # Remove highlighted text with Backspace/Delete like PSReadLine.
     bind backspace __psrl_backspace_or_kill_selection
