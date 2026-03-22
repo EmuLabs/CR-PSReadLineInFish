@@ -16,7 +16,7 @@ distinct from **Ctrl+S** (historically XOFF / flow control).
 
 ## What works without terminal config
 
-**Default in this repo:** **`Alt+W`** → `bind alt-w __psrl_copy_selection`
+**Default in this repo:** **`Alt+C`** → `bind alt-c __psrl_copy_selection`
 
 `Alt` combinations usually send an escape-prefixed sequence, which Fish can bind
 on its own.

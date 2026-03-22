@@ -14,7 +14,7 @@ It adds:
 - `Ctrl+Left` / `Ctrl+Right` -> move by word (`backward-word` / `forward-word`)
 - `Ctrl+Shift+Left` / `Ctrl+Shift+Right` -> extend selection by word
 - `Ctrl+Shift+Home` / `Ctrl+Shift+End` -> extend selection from the cursor to the **start** / **end** of the line
-- `Alt+W` -> copy the current command-line selection to the clipboard
+- `Alt+C` -> copy the current command-line selection to the clipboard
 
 Several escape-sequence variants are included to improve compatibility across
 terminal emulators and keyboard protocols. If **Ctrl+Shift+Home/End** do nothing,
@@ -23,7 +23,7 @@ run `fish_key_reader` and bind your terminal’s sequences to
 
 ### Copy shortcut
 
-Default copy is **`Alt+W`**. **Ctrl+Shift+C** and **Ctrl+Shift+S** (and many
+Default copy is **`Alt+C`**. **Ctrl+Shift+C** and **Ctrl+Shift+S** (and many
 similar chords) are usually the **same byte** as **Ctrl+C** / **Ctrl+S** on the
 TTY (`showkey -a` shows `^C` / `^S`), so Fish cannot bind them as separate
 “copy” keys without a terminal that sends a different escape sequence.
